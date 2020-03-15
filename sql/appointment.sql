@@ -52,9 +52,9 @@ CREATE TABLE `appointment_list` (
   `name` varchar(45) NOT NULL,
   `id_number` varchar(45) NOT NULL,
   `phone_number` varchar(45) NOT NULL,
-  `appointment_number` int(11) NOT NULL,
+  `subscribe_number` int(11) NOT NULL,
   `appointment_id` int(11) NOT NULL,
-  PRIMARY KEY (`id`),
+  PRIMARY KEY (`id`,`phone_number`,`id_number`,`appointment_id`),
   KEY `fk_appointment_id_idx` (`appointment_id`),
   CONSTRAINT `fk_appointment_id` FOREIGN KEY (`appointment_id`) REFERENCES `appointment` (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
@@ -68,6 +68,31 @@ LOCK TABLES `appointment_list` WRITE;
 /*!40000 ALTER TABLE `appointment_list` DISABLE KEYS */;
 /*!40000 ALTER TABLE `appointment_list` ENABLE KEYS */;
 UNLOCK TABLES;
+
+--
+-- Table structure for table `draw_list`
+--
+
+DROP TABLE IF EXISTS `draw_list`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+ SET character_set_client = utf8mb4 ;
+CREATE TABLE `draw_list` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `appointment_list_id` int(11) NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `fk_appointment_list_id_idx` (`appointment_list_id`),
+  CONSTRAINT `fk_appointment_list_id` FOREIGN KEY (`appointment_list_id`) REFERENCES `appointment_list` (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `draw_list`
+--
+
+LOCK TABLES `draw_list` WRITE;
+/*!40000 ALTER TABLE `draw_list` DISABLE KEYS */;
+/*!40000 ALTER TABLE `draw_list` ENABLE KEYS */;
+UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
 /*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
@@ -78,4 +103,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2020-03-15 10:18:39
+-- Dump completed on 2020-03-15 10:37:18
