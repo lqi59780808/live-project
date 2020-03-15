@@ -28,7 +28,7 @@ CREATE TABLE `appointment` (
   `end` datetime DEFAULT NULL,
   `max` int(11) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -54,10 +54,10 @@ CREATE TABLE `appointment_list` (
   `phone_number` varchar(45) NOT NULL,
   `subscribe_number` int(11) NOT NULL,
   `appointment_id` int(11) NOT NULL,
-  PRIMARY KEY (`id`,`phone_number`,`id_number`,`appointment_id`),
+  PRIMARY KEY (`id`,`id_number`,`phone_number`,`appointment_id`),
   KEY `fk_appointment_id_idx` (`appointment_id`),
   CONSTRAINT `fk_appointment_id` FOREIGN KEY (`appointment_id`) REFERENCES `appointment` (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -82,7 +82,7 @@ CREATE TABLE `draw_list` (
   PRIMARY KEY (`id`),
   KEY `fk_appointment_list_id_idx` (`appointment_list_id`),
   CONSTRAINT `fk_appointment_list_id` FOREIGN KEY (`appointment_list_id`) REFERENCES `appointment_list` (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -103,4 +103,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2020-03-15 10:37:18
+-- Dump completed on 2020-03-15 15:55:41
